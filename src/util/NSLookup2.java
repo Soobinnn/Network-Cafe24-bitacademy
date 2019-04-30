@@ -1,51 +1,59 @@
 package util;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.Scanner;
-
 /*
- *  Scanner로 구현한 NSLookup
+ *  InputStreamReader로 구현한 nslookup
  */
-public class NSLookup 
+public class NSLookup2 
 {
 	public static void main(String[] args) 
 	{
-		Scanner sc = null;
+	
+		BufferedReader br = null;
+		
 		try 
 		{
-			sc = new Scanner(System.in);
+			InputStreamReader isr = new InputStreamReader(System.in, "utf-8");
+			br = new BufferedReader(isr);
+			
 			String hostname = null;
-			while((hostname = sc.nextLine())!=null)
+			while((hostname = br.readLine()) != null)
 			{
 				if("exit".equals(hostname))
 				{
 					break;
 				}
-				//String hostname = "www.naver.com";
-				
 				InetAddress[] inetAddresses;
-			
+				
 				inetAddresses = InetAddress.getAllByName(hostname);
-			
+				
 				for(InetAddress addr : inetAddresses)
 				{
 					System.out.println(addr.getHostAddress());
 				}
 			}
 			
-		} 
-		catch (UnknownHostException e) 
+		}
+		catch(IOException e)
 		{
 			e.printStackTrace();
 		}
 		finally
 		{
-				if(sc != null )
-				{
-					sc.close();
-				}
+			try 
+			{
+				if(br != null)
+				{	
+					br.close();
+				} 
+			}
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
 		}
 	}
 }
