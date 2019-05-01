@@ -3,6 +3,11 @@
   <groupId>com.cafe24</groupId>
   <artifactId>network</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
+  <properties>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -12,7 +17,7 @@
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
-        </configuration>
+        </configuration> 
       </plugin>
     </plugins>
   </build>
