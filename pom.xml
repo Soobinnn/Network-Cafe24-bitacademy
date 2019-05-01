@@ -10,8 +10,18 @@
   
   <build>
     <sourceDirectory>src</sourceDirectory>
+ 	<resources>
+		<resource>
+			<directory>${project.basedir}/resources</directory>
+			<excludes>
+				<exclude>**/*.java</exclude>
+			</excludes>
+		</resource>
+	</resources>
+  
     <plugins>
-      <plugin>
+
+      	<plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.7.0</version>
         <configuration>

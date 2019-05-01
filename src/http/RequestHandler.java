@@ -7,10 +7,26 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 
 public class RequestHandler extends Thread {
-	private static final String DOCUMENT_ROOT = "./webapp";
+	private static String DOCUMENT_ROOT = "";
+	
+	static
+	{
+		try 
+		{
+			DOCUMENT_ROOT = new File(RequestHandler.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getPath();
+			DOCUMENT_ROOT += "/webapp";
+		} 
+		catch (URISyntaxException e) 
+		{
+			e.printStackTrace();
+		}	
+		System.out.println("---->" + DOCUMENT_ROOT);
+	}
+	
 	private Socket socket;
 	
 	public RequestHandler( Socket socket ) {
